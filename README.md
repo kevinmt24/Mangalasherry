@@ -1,2 +1,3 @@
 # Mangalasherry
-Another project
+Mess Fees Managament Application
+
