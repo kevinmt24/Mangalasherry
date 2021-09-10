@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "703255746569",
+    "firebase_url": "https://mangalassery-bc17c-default-rtdb.firebaseio.com",
+    "project_id": "mangalassery-bc17c",
+    "storage_bucket": "mangalassery-bc17c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703255746569:android:d692954e1098222be4c0d8",
+        "android_client_info": {
+          "package_name": "com.mangalassery.app.mangalassery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703255746569-8tiu1os3742nejcj9c1pj7pklrnde8sr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD81VAHY-Xqye7lYri5Hm-K5vgVkgCCuto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703255746569-8tiu1os3742nejcj9c1pj7pklrnde8sr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
