@@ -10,6 +10,7 @@ class _CardClassState extends State<CardClass> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.symmetric(vertical:5,horizontal: 15),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

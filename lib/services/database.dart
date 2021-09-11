@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:messfees/services/monthlyfees.dart';
 class DatabaseService {
   final String uid;
   DatabaseService({required this.uid});
@@ -29,9 +30,15 @@ class DatabaseService {
     return userCollection.doc(uid).collection('currentMonth').snapshots();
   }
 
-  Future<void>submitMonthTotal(int monthTotal) async {
+  //Getting Total Month Data
+
+
+
+  //Setting Total Month Data
+  Future<void>submitMonthTotal() async {
+
     return await userCollection.doc(uid).collection('history').doc(currentMonth).set({
-      'amount': monthTotal,
+      'amount': MonthlyFees.monthTotal,
       'month' : currentMonth,
     });
   }

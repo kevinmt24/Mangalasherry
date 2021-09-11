@@ -27,7 +27,9 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mangalassery'),
+        title: const Text('Hey Kevin'),
+        backgroundColor: Colors.grey,
+        brightness: Brightness.dark,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

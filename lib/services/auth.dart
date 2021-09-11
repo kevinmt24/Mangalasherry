@@ -4,11 +4,20 @@ import 'package:messfees/services/database.dart';
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-                                                                    //TODO: Create User Object based on FirebaseUser
+  static String signedInUserId = '';
+
   CurrentUser? _userFromFirebaseUser(User? user) {
-    return user != null ? CurrentUser(uid: user.uid) : null;
+
+    // return user != null ? CurrentUser(uid: user.uid) : null;
+    if(user != null) {
+      signedInUserId = user.uid;
+      return CurrentUser(uid: user.uid);
+    }
+    else {
+      return null;
+    }
   }
-  static String signedInUserId = ''; //Passing it to the database
+   //Passing it to the database
   //auth change user stream
   Stream<CurrentUser?> get user {
     return _auth.authStateChanges()

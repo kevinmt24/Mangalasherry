@@ -6,6 +6,7 @@ import 'package:messfees/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:messfees/screens/authenticate/authenticate.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,6 +26,7 @@ class _FeesAppState extends State<FeesApp> {
    return StreamProvider<CurrentUser?>.value(
      value: AuthService().user,
      initialData: null,
+
      child: MaterialApp(
         home: AuthenticationWrapper(),
       ),
