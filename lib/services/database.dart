@@ -20,7 +20,7 @@ class DatabaseService {
       'breakfast':breakfast,
       'lunch':lunch,
       'dinner':dinner,
-      'date': 'Aug 24',
+      'date': currentDay,
     });
   }
 

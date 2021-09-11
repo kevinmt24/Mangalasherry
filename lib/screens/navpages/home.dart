@@ -14,7 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final AuthService _auth = AuthService();
   String today = DateFormat('MMMMEEEEd').format(DateTime.now()).toString().replaceAll('/', '-');
   var breakfast = 40;
   var lunch = 45;
@@ -23,10 +22,21 @@ class _HomeState extends State<Home> {
   bool _lunchCheck = false;
   bool _dinnerCheck = false;
   var todayPrice = 0;
+
+  int calculatePrice() {
+    int a = _breakfastCheck ? 1 : 0;
+    int b = _lunchCheck ? 1 : 0;
+    int c = _dinnerCheck ? 1 : 0;
+    return  a * breakfast + b * lunch + c * dinner;
+  }
   @override
   Widget build(BuildContext context) {
 
-    return StreamProvider<QuerySnapshot?>.value(
+    if(AuthService.signedInUserId == null)
+      return AlertDialog(
+        title: Text('Error Signing In'),
+      );
+    else return StreamProvider<QuerySnapshot?>.value(
       initialData: null,
       value: DatabaseService(uid: AuthService.signedInUserId).fees,
       child: Scaffold(
@@ -47,13 +57,11 @@ class _HomeState extends State<Home> {
               onChanged: (bool? value) {
                 setState(() {
                   _breakfastCheck = !_breakfastCheck;
-                  int a = _breakfastCheck ? 1 : 0;
-                  int b = _lunchCheck ? 1 : 0;
-                  int c = _dinnerCheck ? 1 : 0;
-                  todayPrice = a * breakfast + b * lunch + c * dinner;
+                  todayPrice = calculatePrice();
                 });
               },
             ),
+
             CheckboxListTile(
               title: Text('Lunch'),
               secondary: Icon(Icons.wb_sunny),
@@ -63,10 +71,7 @@ class _HomeState extends State<Home> {
               onChanged: (bool? value) {
                 setState(() {
                   _lunchCheck = !_lunchCheck;
-                  int a = _breakfastCheck ? 1 : 0;
-                  int b = _lunchCheck ? 1 : 0;
-                  int c = _dinnerCheck ? 1 : 0;
-                  todayPrice = a * breakfast + b * lunch + c * dinner;
+                  todayPrice = calculatePrice();
                 });
               },
             ),
@@ -79,10 +84,7 @@ class _HomeState extends State<Home> {
               onChanged: (bool? value) {
                 setState(() {
                   _dinnerCheck = !_dinnerCheck;
-                  int a = _breakfastCheck ? 1 : 0;
-                  int b = _lunchCheck ? 1 : 0;
-                  int c = _dinnerCheck ? 1 : 0;
-                  todayPrice = a * breakfast + b * lunch + c * dinner;
+                  todayPrice = calculatePrice();
                 });
               },
             ),
@@ -108,17 +110,17 @@ class _HomeState extends State<Home> {
                     });
                   },
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 10),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Center(
               child: Text(todayPrice.toString()),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 10),
                                                                             //TODO: Monthly Amount here...
             MonthlyFees(),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
 
@@ -130,8 +132,6 @@ class _HomeState extends State<Home> {
               },
               child: const Text('Submit'),
             ),
-            SizedBox(height: 20),
-
           ],
         ),
       ),
